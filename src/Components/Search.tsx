@@ -22,7 +22,6 @@ export default function Search() {
   const dropdownRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
 
-  // Debounce function to limit API calls
   const debounce = (func: Function, wait: number) => {
     let timeout: NodeJS.Timeout
     return function executedFunction(...args: any[]) {
@@ -35,9 +34,8 @@ export default function Search() {
     }
   }
 
-  // Search function to fetch suggestions from API
   const searchSuggestions = async (query: string) => {
-    if (query.trim().length < 2) { // Require at least 2 characters
+    if (query.trim().length < 2) { 
       setSuggestions([])
       setIsDropdownOpen(false)
       return
@@ -61,7 +59,6 @@ export default function Search() {
     }
   }
 
-  // Debounced search function
   const debouncedSearch = debounce(searchSuggestions, 300)
 
   useEffect(() => {
@@ -182,7 +179,6 @@ export default function Search() {
             </svg>
           </div>
 
-          {/* Input Field */}
           <input
             ref={searchRef}
             type="text"
@@ -223,7 +219,6 @@ export default function Search() {
             </button>
           )}
 
-          {/* Search Button */}
           <button
             type="submit"
             disabled={!search.trim()}
@@ -237,7 +232,6 @@ export default function Search() {
           </button>
         </div>
 
-        {/* Dropdown Suggestions */}
         {isDropdownOpen && (
           <div
             ref={dropdownRef}
@@ -327,7 +321,6 @@ export default function Search() {
           </div>
         )}
 
-        {/* Show typing hint when search is focused but too short */}
         {isFocused && search.trim().length > 0 && search.trim().length < 2 && (
           <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg z-50 px-4 py-3">
             <div className="text-sm text-gray-500 dark:text-gray-400 text-center">

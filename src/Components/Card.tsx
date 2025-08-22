@@ -43,7 +43,7 @@ export default function Card({ result }: CardProps) {
               {imageLoading && (
                 <div className="absolute inset-0 bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center h-80">
                   <div className="flex flex-col items-center space-y-4">
-                    <div className="w-16 h-16 border-4 border-gray-300 dark:border-gray-600 border-t-blue-500 rounded-full animate-spin"></div>
+                    <div className="w-16 h-16 border-4 border-gray-300 dark:border-gray-600 border-t-amber-500 rounded-full animate-spin"></div>
                     <div className="text-gray-500 dark:text-gray-400 text-sm font-medium">Loading...</div>
                   </div>
                 </div>
