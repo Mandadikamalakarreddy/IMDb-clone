@@ -34,8 +34,11 @@ export async function GET(request: NextRequest) {
 
   const API_KEY = process.env.API_KEY
   if (!API_KEY) {
-    console.error('TMDB API key not found')
-    return NextResponse.json({ results: [] })
+    console.error('TMDB API key not found in environment variables')
+    return NextResponse.json({ 
+      error: 'API configuration error',
+      results: [] 
+    }, { status: 500 })
   }
 
   try {

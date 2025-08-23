@@ -76,6 +76,20 @@ export default async function GenresPage({
 }: { 
   readonly searchParams: { readonly genre?: string; readonly type?: string } 
 }) {
+  // Check if API key exists
+  if (!API_KEY) {
+    console.error('API_KEY is not configured');
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+        <GenreSelectorWrapper />
+        <div className="text-center py-8">
+          <h1 className="text-2xl font-bold text-red-600 mb-4">Configuration Error</h1>
+          <p className="text-gray-600">API key is not configured properly.</p>
+        </div>
+      </div>
+    );
+  }
+
   const selectedGenreId = searchParams.genre || '28'; 
   const contentType = searchParams.type || 'movie'; 
   
