@@ -22,6 +22,13 @@ export default function Navbar() {
         }`} href="/genres">
         Genres
       </Link>
+      <Link className={`hover:text-amber-600 font-semibold ${
+          pathName === '/toDaysPicks'
+            ? 'underline underline-offset-8 decoration-4 decoration-amber-500 rounded-lg'
+            : ''
+        }`} href="/toDaysPicks">
+        Today's Picks
+      </Link>
     </div>
   )
 }
