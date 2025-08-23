@@ -20,7 +20,6 @@ const nextConfig = {
     optimizeFonts: true,
     swcMinify: true,
     experimental: {
-      optimizeCss: true,
       turbo: {
         rules: {
           '*.svg': {

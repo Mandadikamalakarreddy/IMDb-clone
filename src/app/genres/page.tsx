@@ -1,5 +1,5 @@
 import Results from "@/Components/Results";
-import GenreSelector from "@/Components/GenreSelector";
+import GenreSelectorWrapper from "@/Components/GenreSelectorWrapper";
 
 const API_KEY = process.env.API_KEY;
 
@@ -110,7 +110,7 @@ export default async function GenresPage({
 
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-        <GenreSelector />
+        <GenreSelectorWrapper />
         
         {/* Results Section */}
         <div className="max-w-7xl mx-auto px-4 py-8">
@@ -160,7 +160,7 @@ export default async function GenresPage({
     console.error('Error fetching data:', error);
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-        <GenreSelector />
+        <GenreSelectorWrapper />
         
         {/* Error Section */}
         <div className="max-w-4xl mx-auto px-4 py-16 text-center">

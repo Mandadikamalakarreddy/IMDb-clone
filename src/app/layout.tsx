@@ -5,7 +5,7 @@ import Providers from "./Providers";
 
 import { ThemeProvider } from "./theme/theme-provider";
 import Navbar from "@/Components/Navbar";
-import Search from "@/Components/Search";
+import SearchWrapper from "@/Components/SearchWrapper";
 import Header from "@/Components/Header";
 
 
@@ -28,7 +28,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Providers>
           <Header />
           <Navbar/>
-          <Search/>
+          <SearchWrapper/>
           {children}
         </Providers>
         </ThemeProvider>
