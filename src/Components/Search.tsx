@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 
 interface SearchSuggestion {
   id: string
@@ -259,9 +260,11 @@ export default function Search() {
                   >
                     <div className="flex items-center space-x-3">
                       {suggestion.poster_path ? (
-                        <img
+                        <Image
                           src={`https://image.tmdb.org/t/p/w92${suggestion.poster_path}`}
                           alt={suggestion.title}
+                          width={40}
+                          height={56}
                           className="w-10 h-14 object-cover rounded-md shadow-sm"
                           onError={(e) => {
                             const target = e.target as HTMLImageElement
@@ -305,7 +308,7 @@ export default function Search() {
                   <svg className="w-12 h-12 mx-auto mb-3 text-gray-300 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="m21 21-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
-                  No results found for "{search}"
+                  No results found for &quot;{search}&quot;
                 </div>
                 <button
                   onClick={handleSubmit}

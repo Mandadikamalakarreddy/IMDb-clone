@@ -27,7 +27,7 @@ export default function Navbar() {
             ? 'underline underline-offset-8 decoration-4 decoration-amber-500 rounded-lg'
             : ''
         }`} href="/toDaysPicks">
-        Today's Picks
+        Today&apos;s Picks
       </Link>
     </div>
   )

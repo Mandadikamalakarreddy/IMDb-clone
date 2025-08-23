@@ -170,7 +170,7 @@ export default async function GenresPage({
               Oops! Something went wrong
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-              We couldn't load the {contentType === 'tv' ? 'TV shows' : 'movies'} right now.
+              We couldn&apos;t load the {contentType === 'tv' ? 'TV shows' : 'movies'} right now.
             </p>
             <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl p-6">
               <p className="text-red-500 dark:text-red-300 font-medium">

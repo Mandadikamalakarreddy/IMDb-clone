@@ -56,13 +56,18 @@ export function ThemeToggleButton({
       setTheme(theme === "light" ? "dark" : "light")
     }
 
-    if (!document.startViewTransition) {
+    // Type assertion for the newer View Transitions API
+    const documentWithTransition = document as Document & {
+      startViewTransition?: (callback: () => void) => void
+    }
+
+    if (!documentWithTransition.startViewTransition) {
       switchTheme()
       return
     }
 
-    document.startViewTransition(switchTheme)
-  }, [theme, setTheme])
+    documentWithTransition.startViewTransition(switchTheme)
+  }, [theme, setTheme, variant, start, url, updateStyles])
 
   return (
     <Button

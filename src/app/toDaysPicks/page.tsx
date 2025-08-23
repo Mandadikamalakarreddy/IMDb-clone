@@ -128,10 +128,10 @@ const TodaysPicksPage = () => {
       <div className="container mx-auto max-w-7xl px-4 py-8">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            🎬 Today's Picks For You
+            🎬 Today&apos;s Picks For You
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Discover today's handpicked selection of trending movies and TV shows, curated just for you. 
+            Discover today&apos;s handpicked selection of trending movies and TV shows, curated just for you. 
             New picks every day!
           </p>
         </div>
