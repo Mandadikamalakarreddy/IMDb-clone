@@ -1,277 +1,195 @@
-# 🎬 IMDb Clone - Movie & TV Show Discovery App
+# IMDb Clone
 
-<div align="center">
-  
-[![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![TMDB](https://img.shields.io/badge/TMDB-01B4E4?style=for-the-badge&logo=themoviedatabase&logoColor=white)](https://www.themoviedb.org/)
+A movie and TV discovery application built with Next.js App Router, TypeScript, Tailwind CSS, and TMDB.
 
-</div>
+## Overview
 
-<div align="center">
-  <p>A modern, feature-rich movie and TV show discovery application built with cutting-edge web technologies. Explore trending content, search through vast databases, and discover your next favorite entertainment.</p>
-</div>
+This project lets users:
 
----
+- Browse trending and top-rated content
+- Filter the home feed by genre type (movies, TvSeries, and more)
+- Search across movie and TV data
+- Explore dedicated Movies and TV pages with pagination
+- Open detail pages with trailers, cast, reviews, and related content
+- Switch between light and dark themes
 
-## ✨ Features
+Data is fetched from TMDB using server-side requests with caching/revalidation.
 
-### 🎯 Core Features
-- **🎬 Browse Movies & TV Shows** - Explore popular and trending content
-- **🔍 Advanced Search** - Find movies and shows with intelligent search
-- **📺 Today's Picks** - Curated daily recommendations for movies and TV shows
-- **🎭 Genre Filtering** - Discover content by specific genres
-- **📱 Fully Responsive** - Perfect experience on all devices
-- **🌙 Dark/Light Mode** - Eye-friendly theme switching
-- **⚡ Performance Optimized** - Fast loading with Next.js optimization
+## Tech Stack
 
-### 🚀 Advanced Features
-- **Daily Content Rotation** - Fresh picks every day with seeded randomization
-- **Detailed Content Pages** - Comprehensive information about movies and TV shows
-- **Real-time Search** - Instant search results as you type
-- **Loading States** - Beautiful skeleton loading animations
-- **Error Handling** - Graceful error management with retry options
-- **SEO Optimized** - Search engine friendly with proper meta tags
+- Next.js 14 (App Router)
+- React 18
+- TypeScript
+- Tailwind CSS
+- next-themes
+- TMDB API
 
----
+## Project Structure
 
-## 🛠️ Tech Stack
-
-| Category | Technology | Purpose |
-|----------|------------|---------|
-| **Framework** | Next.js 14 | React framework with App Router |
-| **Language** | TypeScript | Type-safe development |
-| **Styling** | Tailwind CSS | Utility-first CSS framework |
-| **API** | TMDB API | Movie and TV show data |
-| **Theme** | next-themes | Dark/Light mode switching |
-| **Deployment** | Vercel | Serverless deployment platform |
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-- **Node.js** 18.0 or higher
-- **npm**, **yarn**, or **pnpm**
-- **TMDB API Key** (free at [TMDB](https://www.themoviedb.org/settings/api))
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/Mandadikamalakarreddy/IMDb-clone.git
-   cd IMDb-clone
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   # or
-   yarn install
-   # or
-   pnpm install
-   ```
-
-3. **Environment Setup**
-   ```bash
-   # Create environment file
-   cp .env.example .env.local
-   ```
-
-4. **Configure Environment Variables**
-   Add your TMDB API key to `.env.local`:
-   ```env
-   API_KEY=your_tmdb_api_key_here
-   NEXT_PUBLIC_TMDB_BASE_URL=https://api.themoviedb.org/3
-   NEXT_PUBLIC_IMAGE_BASE_URL=https://image.tmdb.org/t/p
-   ```
-
-5. **Run Development Server**
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   # or
-   pnpm dev
-   ```
-
-6. **Open Application**
-   Navigate to [http://localhost:3000](http://localhost:3000) in your browser.
-
----
-
-## 📁 Project Structure
-
-```
-📦 IMDb-clone/
-├── 📁 public/                 # Static assets
-│   ├── next.svg
-│   └── vercel.svg
-├── 📁 src/
-│   ├── 📁 app/               # App Router (Next.js 13+)
-│   │   ├── globals.css       # Global styles
-│   │   ├── layout.tsx        # Root layout
-│   │   ├── page.tsx         # Home page
-│   │   ├── Providers.tsx    # Context providers
-│   │   ├── 📁 about/        # About page
-│   │   ├── 📁 api/          # API routes
-│   │   │   ├── 📁 genres/   # Genre endpoints
-│   │   │   ├── 📁 search/   # Search endpoints
-│   │   │   └── 📁 todays-pick/ # Daily picks API
-│   │   ├── 📁 genres/       # Genre pages
-│   │   ├── 📁 movies/       # Movie detail pages
-│   │   ├── 📁 search/       # Search result pages
-│   │   ├── 📁 theme/        # Theme components
-│   │   ├── 📁 toDaysPicks/  # Today's picks page
-│   │   └── 📁 tv/           # TV show detail pages
-│   ├── 📁 assets/           # Project assets
-│   │   └── background.jpg
-│   └── 📁 Components/       # Reusable components
-│       ├── Card.tsx         # Content card component
-│       ├── GenreSelector.tsx
-│       ├── Header.tsx       # Main header
-│       ├── LoadingComponents.tsx
-│       ├── MenuItems.tsx
-│       ├── Navbar.tsx       # Navigation bar
-│       ├── NavItems.tsx
-│       ├── Results.tsx      # Results grid
-│       ├── Search.tsx       # Search component
-│       ├── theme-toggle-button.tsx
-│       └── 📁 ui/           # UI components
-│           └── button.tsx
-├── 📄 next.config.mjs       # Next.js configuration
-├── 📄 tailwind.config.ts    # Tailwind configuration
-├── 📄 tsconfig.json         # TypeScript configuration
-└── 📄 package.json          # Project dependencies
+```text
+IMDb-clone/
+  public/
+  src/
+    app/
+      about/page.tsx
+      api/
+        search/route.ts
+        todays-pick/route.ts
+      genres/page.tsx
+      movies/page.tsx
+      movies/[id]/page.tsx
+      search/[searchTerm]/page.tsx
+      todays-picks/page.tsx
+      tv/page.tsx
+      tv/[id]/page.tsx
+      layout.tsx
+      page.tsx
+    Components/
+      Details/
+      Card.tsx
+      Header.tsx
+      Navbar.tsx
+      Results.tsx
+      Search.tsx
+      WatchNowClient.tsx
+      PlayerModal.tsx
+      ui/button.tsx
+    lib/
+      tmdb-api.ts
 ```
 
----
+## Environment Variables
 
-## 🔗 API Routes
+Create a `.env.local` file in the project root.
 
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/api/search?q={query}` | GET | Search movies and TV shows |
-| `/api/genres` | GET | Get available genres |
-| `/api/todays-pick` | GET | Get daily curated picks |
+Required:
 
----
+- `API_KEY`: TMDB API key (server-side)
 
-## 🎨 Key Pages & Features
+Optional fallback used by the data layer:
 
-### 🏠 Home Page
-- Featured trending movies and TV shows
-- Quick navigation to different sections
-- Responsive hero section
+- `NEXT_PUBLIC_API_KEY`
 
-### 🔍 Search Functionality
-- Real-time search across movies and TV shows
-- Debounced input for performance
-- Combined results display
+Example:
 
-### 📅 Today's Picks
-- **Daily Rotation**: New picks every day using date-based seeding
-- **Toggle View**: Switch between movies and TV shows
-- **Top 5 Selection**: Curated from trending content
-- **Beautiful Cards**: Rich metadata display
+```env
+API_KEY=your_tmdb_api_key_here
+NEXT_PUBLIC_API_KEY=your_tmdb_api_key_here
+```
 
-### 🎭 Genre Pages
-- Filter content by specific genres
-- Grid layout with infinite scrolling potential
-- Category-specific browsing
+## Getting Started
 
----
+1. Install dependencies:
 
-## 🚀 Deployment
+```bash
+npm install
+```
 
-### Deploy to Vercel (Recommended)
+2. Set environment variables in `.env.local`.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Mandadikamalakarreddy/IMDb-clone)
+3. Start the development server:
 
-**Manual Deployment:**
+```bash
+npm run dev
+```
 
-1. **Fork this repository**
-2. **Connect to Vercel**
-   - Import your repository to Vercel
-   - Configure build settings (auto-detected)
-3. **Set Environment Variables**
-   ```env
-   API_KEY=your_production_tmdb_api_key
-   ```
-4. **Deploy!** 🎉
+4. Open `http://localhost:3000`.
 
-### Other Platforms
-- **Netlify**: Connect repository and set build command `npm run build`
-- **Railway**: One-click deploy with environment variables
-- **Docker**: Use the provided Dockerfile for containerization
+## Available Scripts
 
----
+- `npm run dev` - Start local development server
+- `npm run build` - Build production app
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm run lint:fix` - Auto-fix lint issues
+- `npm run type-check` - Run TypeScript type checks
+- `npm run analyze` - Build with bundle analysis flag
+- `npm run export` - Attempt static export (`next export`)
 
-## 🔑 Environment Variables
+## Pages and Routing
 
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `API_KEY` | TMDB API key for data fetching | ✅ Yes |
-| `NEXT_PUBLIC_TMDB_BASE_URL` | TMDB API base URL | Optional |
-| `NEXT_PUBLIC_IMAGE_BASE_URL` | TMDB image base URL | Optional |
+### Main Pages
 
----
+- / - Home feed with dynamic genre filters and discover results
+- /about - Project overview and purpose
+- /genres - Genre explorer for movie and TV categories
+- /movies - Dedicated movie listing with sorting and pagination
+- /tv - Dedicated TV listing with sorting and pagination
+- /todays-picks - Daily curated picks for quick discovery
+- /search/[searchTerm] - Search results for user-entered terms
 
-## 🤝 Contributing
+### Detail Experience
 
-We welcome contributions! Here's how to get started:
+Both detail pages share the same enhanced layout and content strategy:
 
-1. **Fork the repository**
-2. **Create a feature branch**
-   ```bash
-   git checkout -b feature/amazing-feature
-   ```
-3. **Make your changes**
-4. **Commit your changes**
-   ```bash
-   git commit -m "✨ Add amazing feature"
-   ```
-5. **Push to the branch**
-   ```bash
-   git push origin feature/amazing-feature
-   ```
-6. **Open a Pull Request**
+- Large hero section with backdrop, poster, metadata, and cleaned synopsis
+- Watch Now action with popup trailer modal
+- Structured sections for cast, reviews, and related media
+- Responsive layout optimized for mobile, tablet, and desktop
 
-### 📝 Contribution Guidelines
-- Follow TypeScript best practices
-- Maintain consistent code formatting
-- Add proper documentation for new features
-- Test your changes thoroughly
-- Update README if needed
+### Detail Pages
 
----
+- /movies/[id] - Full movie details including runtime, rating, genres, cast, reviews, and trailer
+- /tv/[id] - Full TV details including seasons, rating, genres, cast, reviews, and trailer
 
-## 📄 License
+### Home Query Filters
 
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+Home supports `genre` query values such as:
 
----
+- `fetchTrending`
+- `fetchTopRated`
+- `movies`
+- `TvSeries`
 
-## 🙏 Acknowledgments
+Example:
 
-- **[The Movie Database (TMDB)](https://www.themoviedb.org/)** - For providing comprehensive movie and TV show data
-- **[Next.js Team](https://nextjs.org/)** - For the incredible React framework
-- **[Tailwind CSS](https://tailwindcss.com/)** - For the utility-first CSS framework
-- **[Vercel](https://vercel.com/)** - For seamless deployment and hosting
+- `/?genre=movies`
+- `/?genre=TvSeries`
 
----
+## Pagination Behavior
 
-## 📊 Project Stats
+Pagination is currently enabled on:
 
-![GitHub stars](https://img.shields.io/github/stars/Mandadikamalakarreddy/IMDb-clone?style=social)
-![GitHub forks](https://img.shields.io/github/forks/Mandadikamalakarreddy/IMDb-clone?style=social)
-![GitHub issues](https://img.shields.io/github/issues/Mandadikamalakarreddy/IMDb-clone)
-![GitHub license](https://img.shields.io/github/license/Mandadikamalakarreddy/IMDb-clone)
+- `/movies`
+- `/tv`
+- Home feed when `genre=movies` or `genre=TvSeries`
 
----
+Genre explorer (`/genres`) currently loads a single page of popular results.
 
-<div align="center">
-  <p>Made with ❤️ by <a href="https://github.com/Mandadikamalakarreddy">Kamalakar Reddy</a></p>
-  <p>⭐ Star this repository if you found it helpful!</p>
-</div>
+## API Endpoints
+
+- `GET /api/search` - Search endpoint used by the app
+- `GET /api/todays-pick` - Returns daily picks payload
+
+## Data Layer Notes
+
+Core TMDB utilities are in `src/lib/tmdb-api.ts`.
+
+Implemented helpers include:
+
+- `getMoviesList`
+- `getTvList`
+- `discoverMovies`
+- `discoverTv`
+- `getTrending`
+- `getDetails` (with appended videos, credits, recommendations, similar, and reviews)
+- `getVideos`
+- `search`
+
+## UI Notes
+
+- Uses reusable UI components in `src/Components`
+- Trailer playback is handled via modal (`WatchNowClient` + `PlayerModal`)
+- Theme switching is handled with `next-themes`
+
+## Deployment
+
+Recommended: Vercel
+
+1. Import the repository in Vercel
+2. Add environment variables (`API_KEY` at minimum)
+3. Deploy
+
+## Disclaimer
+
+This project uses data from The Movie Database (TMDB) API. Ensure your usage complies with TMDB terms.

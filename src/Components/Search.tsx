@@ -81,7 +81,7 @@ export default function Search() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     setSearch(value)
-    setSelectedIndex(-1) // Reset selection when typing
+    setSelectedIndex(-1)
     debouncedSearch(value)
   }
 
@@ -155,18 +155,18 @@ export default function Search() {
   }
 
   return (
-    <div className="relative w-full max-w-6xl mx-auto p-5">
+    <div className="relative w-full max-w-3xl mx-auto px-4 py-4">
       <form onSubmit={handleSubmit} className="relative">
-        <div className={`relative flex items-center transition-all duration-300 ease-in-out ${
+        <div className={`relative flex items-center ${
           isFocused || search 
-            ? 'bg-white/10 dark:bg-gray-800/50 backdrop-blur-sm border-2 border-amber-500/50' 
-            : 'bg-white/5 dark:bg-gray-800/30 border-2 border-transparent hover:border-gray-300/30'
-        } rounded-xl shadow-lg hover:shadow-xl`}>
+            ? 'bg-white dark:bg-dark-700 border-2 border-neon-pink/50 shadow-lg' 
+            : 'bg-dark-100/80 dark:bg-dark-800/80 border-2 border-transparent hover:border-dark-200 dark:hover:border-dark-600'
+        } rounded-2xl`}>
           
           {/* Search Icon */}
           <div className="pl-4 pr-3">
             <svg 
-              className="w-5 h-5 text-gray-400 dark:text-gray-500" 
+              className={`w-5 h-5 ${isFocused ? 'text-neon-pink' : 'text-dark-400 dark:text-dark-500'}`}
               fill="none" 
               stroke="currentColor" 
               viewBox="0 0 24 24"
@@ -183,8 +183,8 @@ export default function Search() {
           <input
             ref={searchRef}
             type="text"
-            placeholder="Search movies, TV shows, actors..."
-            className="w-full h-14 bg-transparent outline-none text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 font-medium"
+            placeholder="Search movies, actors, moods..."
+            className="w-full h-12 bg-transparent outline-none text-dark-900 dark:text-white placeholder-dark-400 dark:placeholder-dark-500 font-medium text-sm"
             value={search}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
@@ -202,10 +202,10 @@ export default function Search() {
             <button
               type="button"
               onClick={clearSearch}
-              className="p-2 mr-2 hover:bg-gray-200/20 dark:hover:bg-gray-700/30 rounded-full transition-colors duration-200"
+              className="p-2 mr-1 hover:bg-dark-200/50 dark:hover:bg-dark-600/50 rounded-full"
             >
               <svg 
-                className="w-4 h-4 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300" 
+                className="w-4 h-4 text-dark-400 hover:text-dark-600 dark:hover:text-dark-200" 
                 fill="none" 
                 stroke="currentColor" 
                 viewBox="0 0 24 24"
@@ -223,10 +223,10 @@ export default function Search() {
           <button
             type="submit"
             disabled={!search.trim()}
-            className={`px-6 py-3 mr-2 rounded-lg font-semibold transition-all duration-200 ${
+            className={`px-5 py-2.5 mr-1.5 rounded-xl font-semibold text-sm ${
               search.trim()
-                ? 'bg-amber-600 hover:bg-amber-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105'
-                : 'bg-gray-300/50 dark:bg-gray-600/50 text-gray-500 dark:text-gray-400 cursor-not-allowed'
+                ? 'bg-neon-pink hover:bg-neon-pink-light text-white shadow-md hover:shadow-lg'
+                : 'bg-dark-200/50 dark:bg-dark-600/50 text-dark-400 dark:text-dark-500 cursor-not-allowed'
             }`}
           >
             Search
@@ -236,26 +236,25 @@ export default function Search() {
         {isDropdownOpen && (
           <div
             ref={dropdownRef}
-            className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl backdrop-blur-md z-50 max-h-96 overflow-y-auto custom-scrollbar animate-slide-up"
+            className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-dark-800 border border-dark-200/50 dark:border-dark-600/50 rounded-2xl shadow-2xl z-50 max-h-96 overflow-y-auto w-full custom-scrollbar"
           >
             {isLoading ? (
-              <div className="flex items-center justify-center py-8">
-                <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-amber-600"></div>
-                <span className="ml-3 text-gray-600 dark:text-gray-400">Searching...</span>
+              <div className="flex items-center justify-center py-8 text-dark-400 dark:text-dark-500 text-sm font-bold tracking-widest uppercase">
+                Loading...
               </div>
             ) : suggestions.length > 0 ? (
               <div className="py-2">
-                <div className="px-4 py-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide border-b border-gray-100 dark:border-gray-700">
-                  Suggestions
+                <div className="px-4 py-2 text-xs font-semibold text-dark-400 dark:text-dark-500 uppercase tracking-wider border-b border-dark-100 dark:border-dark-700">
+                  Results
                 </div>
                 {suggestions.map((suggestion, index) => (
                   <button
                     key={suggestion.id}
                     onClick={() => handleSuggestionClick(suggestion)}
-                    className={`w-full px-4 py-3 text-left transition-colors duration-150 border-b border-gray-100 dark:border-gray-700 last:border-b-0 focus:outline-none ${
+                    className={`w-full px-4 py-3 text-left border-b border-dark-100/50 dark:border-dark-700/50 last:border-b-0 focus:outline-none ${
                       selectedIndex === index
-                        ? 'bg-amber-50 dark:bg-amber-900/20 border-amber-200 dark:border-amber-800'
-                        : 'hover:bg-gray-50 dark:hover:bg-gray-700/50 focus:bg-amber-50 dark:focus:bg-amber-900/20'
+                        ? 'bg-neon-pink/10 dark:bg-neon-pink/10'
+                        : 'hover:bg-dark-100/50 dark:hover:bg-dark-700/50'
                     }`}
                   >
                     <div className="flex items-center space-x-3">
@@ -265,7 +264,7 @@ export default function Search() {
                           alt={suggestion.title}
                           width={40}
                           height={56}
-                          className="w-10 h-14 object-cover rounded-md shadow-sm"
+                          className="w-10 h-14 object-cover rounded-lg shadow-sm"
                           onError={(e) => {
                             const target = e.target as HTMLImageElement
                             target.style.display = 'none'
@@ -273,20 +272,20 @@ export default function Search() {
                           }}
                         />
                       ) : null}
-                      <div className={`flex items-center justify-center w-10 h-14 bg-gray-100 dark:bg-gray-700 rounded-md ${suggestion.poster_path ? 'hidden' : ''}`}>
-                        <span className="text-2xl">{getTypeIcon(suggestion.type)}</span>
+                      <div className={`flex items-center justify-center w-10 h-14 bg-dark-100 dark:bg-dark-700 rounded-lg ${suggestion.poster_path ? 'hidden' : ''}`}>
+                        <span className="text-xl">{getTypeIcon(suggestion.type)}</span>
                       </div>
                       <div className="flex-1">
-                        <div className="font-medium text-gray-900 dark:text-white">
+                        <div className="font-semibold text-dark-900 dark:text-white text-sm">
                           {suggestion.title}
                         </div>
-                        <div className="text-sm text-gray-500 dark:text-gray-400 capitalize">
+                        <div className="text-xs text-dark-400 dark:text-dark-500 capitalize mt-0.5">
                           {suggestion.type} 
                           {suggestion.year && ` • ${suggestion.year}`}
                         </div>
                       </div>
                       <svg 
-                        className="w-4 h-4 text-gray-400" 
+                        className="w-4 h-4 text-dark-300 dark:text-dark-500" 
                         fill="none" 
                         stroke="currentColor" 
                         viewBox="0 0 24 24"
@@ -304,15 +303,15 @@ export default function Search() {
               </div>
             ) : search.trim().length >= 2 ? (
               <div className="py-8 text-center">
-                <div className="text-gray-500 dark:text-gray-400 mb-4">
-                  <svg className="w-12 h-12 mx-auto mb-3 text-gray-300 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="text-dark-400 dark:text-dark-500 mb-4">
+                  <svg className="w-10 h-10 mx-auto mb-3 text-dark-300 dark:text-dark-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="m21 21-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
-                  No results found for &quot;{search}&quot;
+                  <p className="text-sm">No results found for &quot;{search}&quot;</p>
                 </div>
                 <button
                   onClick={handleSubmit}
-                  className="inline-flex items-center px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-medium transition-colors duration-200"
+                  className="inline-flex items-center px-4 py-2 bg-neon-pink hover:bg-neon-pink-light text-white rounded-xl font-medium text-sm"
                 >
                   <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m21 21-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -325,8 +324,8 @@ export default function Search() {
         )}
 
         {isFocused && search.trim().length > 0 && search.trim().length < 2 && (
-          <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg z-50 px-4 py-3">
-            <div className="text-sm text-gray-500 dark:text-gray-400 text-center">
+          <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-dark-800 border border-dark-200/50 dark:border-dark-600/50 rounded-xl shadow-lg z-50 px-4 py-3">
+            <div className="text-sm text-dark-400 dark:text-dark-500 text-center">
               Type at least 2 characters to see suggestions
             </div>
           </div>

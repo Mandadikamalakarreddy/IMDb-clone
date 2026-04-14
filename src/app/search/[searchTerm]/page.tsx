@@ -11,19 +11,17 @@ export default async function SearchPage({ params }: SearchPageProps) {
   const searchTerm = decodeURIComponent(params.searchTerm);
 
   try {
-    // Search for movies
     const movieRes = await fetch(
       `https://api.themoviedb.org/3/search/movie?api_key=${process.env.API_KEY}&query=${encodeURIComponent(searchTerm)}&language=en-US&page=1&include_adult=false`,
       {
-        next: { revalidate: 3600 } // Cache for 1 hour
+        next: { revalidate: 3600 }
       }
     );
 
-    // Search for TV shows  
     const tvRes = await fetch(
       `https://api.themoviedb.org/3/search/tv?api_key=${process.env.API_KEY}&query=${encodeURIComponent(searchTerm)}&language=en-US&page=1&include_adult=false`,
       {
-        next: { revalidate: 3600 } // Cache for 1 hour
+        next: { revalidate: 3600 }
       }
     );
 
@@ -34,30 +32,34 @@ export default async function SearchPage({ params }: SearchPageProps) {
     const movieData = movieRes.ok ? await movieRes.json() : { results: [] };
     const tvData = tvRes.ok ? await tvRes.json() : { results: [] };
 
-    // Combine results
     const results = [
       ...movieData.results.map((item: any) => ({ ...item, media_type: 'movie' })),
       ...tvData.results.map((item: any) => ({ ...item, media_type: 'tv' }))
     ];
 
     return (
-      <div className="max-w-6xl mx-auto">
-        <div className="px-3">
-          <h1 className="text-2xl font-bold mb-6 text-amber-600">
-            Search Results for &ldquo;{searchTerm}&rdquo;
+      <div className="max-w-7xl mx-auto">
+        <div className="px-4 pt-6">
+          <h1 className="text-2xl font-bold mb-2 text-dark-900 dark:text-white">
+            Search Results for <span className="text-neon-pink">&ldquo;{searchTerm}&rdquo;</span>
           </h1>
           {results.length === 0 ? (
-            <div className="text-center py-8">
-              <p className="text-gray-600 dark:text-gray-400 text-lg">
+            <div className="text-center py-16">
+              <div className="w-16 h-16 mx-auto mb-4 bg-dark-200/50 dark:bg-dark-700/50 rounded-2xl flex items-center justify-center">
+                <svg className="w-8 h-8 text-dark-400 dark:text-dark-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="m21 21-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </div>
+              <p className="text-dark-400 dark:text-dark-500 text-lg">
                 No results found for &ldquo;{searchTerm}&rdquo;
               </p>
-              <p className="text-gray-500 dark:text-gray-500 text-sm mt-2">
+              <p className="text-dark-300 dark:text-dark-600 text-sm mt-2">
                 Try searching with different keywords
               </p>
             </div>
           ) : (
             <>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
+              <p className="text-dark-400 dark:text-dark-500 mb-2 text-sm">
                 Found {results.length} result{results.length !== 1 ? 's' : ''}
               </p>
               <Results results={results} />
@@ -67,15 +69,14 @@ export default async function SearchPage({ params }: SearchPageProps) {
       </div>
     );
   } catch (error) {
-    console.error('Search error:', error);
     return (
-      <div className="max-w-6xl mx-auto px-3 py-8">
+      <div className="max-w-7xl mx-auto px-4 py-16">
         <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4 text-red-600">Search Error</h1>
-          <p className="text-gray-600 dark:text-gray-400">
+          <h1 className="text-2xl font-bold mb-4 text-red-400">Search Error</h1>
+          <p className="text-dark-400 dark:text-dark-500">
             Something went wrong while searching for &ldquo;{searchTerm}&rdquo;.
           </p>
-          <p className="text-gray-500 dark:text-gray-500 text-sm mt-2">
+          <p className="text-dark-300 dark:text-dark-600 text-sm mt-2">
             Please try again later.
           </p>
         </div>

@@ -6,8 +6,8 @@ import Search from './Search'
 export default function SearchWrapper() {
   return (
     <Suspense fallback={
-      <div className="w-full max-w-6xl mx-auto p-5">
-        <div className="animate-pulse bg-gray-200 dark:bg-gray-700 h-14 rounded-xl"></div>
+      <div className="w-full max-w-3xl mx-auto px-4 py-4">
+        <div className="animate-pulse bg-dark-100 dark:bg-dark-800 h-12 rounded-2xl"></div>
       </div>
     }>
       <Search />

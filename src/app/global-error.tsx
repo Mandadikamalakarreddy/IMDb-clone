@@ -9,28 +9,30 @@ export default function GlobalError({
 }) {
   return (
     <html>
-      <body>
-        <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+      <body className="bg-dark-50 dark:bg-dark-900">
+        <div className="min-h-screen flex items-center justify-center">
           <div className="text-center p-8">
             <div className="text-6xl mb-6">⚠️</div>
-            <h2 className="text-3xl font-bold text-red-600 dark:text-red-400 mb-4">
+            <h2 className="text-3xl font-bold text-red-400 mb-4">
               Application Error
             </h2>
-            <p className="text-gray-600 dark:text-gray-300 mb-8">
+            <p className="text-dark-400 dark:text-dark-300 mb-8">
               Something went wrong with the application.
             </p>
-            <button
-              onClick={() => reset()}
-              className="px-6 py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-medium transition-colors mr-4"
-            >
-              Try again
-            </button>
-            <a
-              href="/"
-              className="px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white rounded-lg font-medium transition-colors"
-            >
-              Go Home
-            </a>
+            <div className="flex gap-4 justify-center">
+              <button
+                onClick={() => reset()}
+                className="px-6 py-3 bg-neon-pink hover:bg-neon-pink-light text-white rounded-xl font-semibold transition-all duration-300 text-sm"
+              >
+                Try again
+              </button>
+              <a
+                href="/"
+                className="px-6 py-3 bg-dark-700 hover:bg-dark-600 text-white rounded-xl font-semibold transition-all duration-300 text-sm"
+              >
+                Go Home
+              </a>
+            </div>
           </div>
         </div>
       </body>

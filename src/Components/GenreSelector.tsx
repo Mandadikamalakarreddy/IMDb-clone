@@ -83,7 +83,6 @@ export default function GenreSelector() {
 
   const handleContentTypeChange = (type: 'movie' | 'tv') => {
     setContentType(type)
-    // Reset to first genre of the selected type
     const firstGenre = type === 'movie' ? movieGenres[0].id : tvGenres[0].id
     setSelectedGenre(firstGenre)
     router.push(`/genres?type=${type}&genre=${firstGenre}`)
@@ -97,14 +96,14 @@ export default function GenreSelector() {
   }
 
   return (
-    <div className=" border-b border-gray-200 dark:border-gray-700">
+    <div className="border-b border-dark-200/30 dark:border-dark-600/50">
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Header Section */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
+          <h1 className="text-4xl font-bold text-dark-900 dark:text-white mb-2">
             Discover Content
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300">
+          <p className="text-base text-dark-400 dark:text-dark-300">
             Browse movies and TV shows by your favorite genres
           </p>
         </div>
@@ -113,27 +112,27 @@ export default function GenreSelector() {
         <div className="flex flex-col lg:flex-row gap-6 items-center justify-center">
           
           {/* Content Type Toggle */}
-          <div className="flex bg-white dark:bg-gray-800 rounded-full p-2 shadow-lg border border-gray-200 dark:border-gray-700">
+          <div className="flex bg-dark-100 dark:bg-dark-800 rounded-full p-1.5 shadow-lg border border-dark-200/30 dark:border-dark-600/50">
             <button
               onClick={() => handleContentTypeChange('movie')}
-              className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+              className={`flex items-center gap-2 px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ${
                 contentType === 'movie'
-                  ? 'bg-amber-600 text-white shadow-md transform scale-105'
-                  : 'text-gray-600 dark:text-gray-300 hover:text-amber-600 dark:hover:text-amber-400'
+                  ? 'bg-neon-pink text-white shadow-md'
+                  : 'text-dark-400 dark:text-dark-300 hover:text-neon-pink'
               }`}
             >
-              <FilmIcon className="w-5 h-5" />
+              <FilmIcon className="w-4 h-4" />
               Movies
             </button>
             <button
               onClick={() => handleContentTypeChange('tv')}
-              className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+              className={`flex items-center gap-2 px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ${
                 contentType === 'tv'
-                  ? 'bg-amber-600 text-white shadow-md transform scale-105'
-                  : 'text-gray-600 dark:text-gray-300 hover:text-amber-600 dark:hover:text-amber-400'
+                  ? 'bg-neon-pink text-white shadow-md'
+                  : 'text-dark-400 dark:text-dark-300 hover:text-neon-pink'
               }`}
             >
-              <TvIcon className="w-5 h-5" />
+              <TvIcon className="w-4 h-4" />
               TV Shows
             </button>
           </div>
@@ -142,55 +141,55 @@ export default function GenreSelector() {
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="flex items-center justify-between gap-3 bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 rounded-xl px-6 py-4 min-w-[260px] text-left font-semibold text-gray-900 dark:text-white hover:border-amber-500 dark:hover:border-amber-400 transition-all duration-300 shadow-lg hover:shadow-xl focus:outline-none focus:border-amber-500 dark:focus:border-amber-400 focus:ring-2 focus:ring-amber-500/20"
+              className="flex items-center justify-between gap-3 bg-white dark:bg-dark-800 border-2 border-dark-200/50 dark:border-dark-600/50 rounded-xl px-6 py-3.5 min-w-[260px] text-left font-semibold text-dark-900 dark:text-white hover:border-neon-pink dark:hover:border-neon-pink transition-all duration-300 shadow-md focus:outline-none focus:border-neon-pink focus:ring-2 focus:ring-neon-pink/20"
             >
-              <span className="truncate">{currentGenreName}</span>
+              <span className="truncate text-sm">{currentGenreName}</span>
               <ChevronDownIcon 
-                className={`w-5 h-5 text-gray-500 transition-transform duration-300 ${
-                  isDropdownOpen ? 'transform rotate-180 text-amber-500' : ''
+                className={`w-4 h-4 text-dark-400 transition-transform duration-300 ${
+                  isDropdownOpen ? 'transform rotate-180 text-neon-pink' : ''
                 }`} 
               />
             </button>
 
             {/* Dropdown Menu */}
             {isDropdownOpen && (
-              <div className="absolute top-full mt-2 w-full bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl z-50 overflow-hidden backdrop-blur-sm">
+              <div className="absolute top-full mt-2 w-full bg-white dark:bg-dark-800 border border-dark-200/50 dark:border-dark-600/50 rounded-xl shadow-2xl z-50 overflow-hidden">
                 {/* Search Input */}
-                <div className="p-4 border-b border-gray-200 dark:border-gray-700">
+                <div className="p-3 border-b border-dark-200/30 dark:border-dark-700">
                   <div className="relative">
-                    <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                    <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-dark-400" />
                     <input
                       type="text"
                       placeholder="Search genres..."
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="w-full pl-10 pr-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-sm placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white focus:outline-none focus:border-amber-500 dark:focus:border-amber-400 focus:ring-2 focus:ring-amber-500/20"
+                      className="w-full pl-9 pr-4 py-2 bg-dark-50 dark:bg-dark-700 border border-dark-200/30 dark:border-dark-600 rounded-lg text-sm placeholder-dark-400 dark:placeholder-dark-500 text-dark-900 dark:text-white focus:outline-none focus:border-neon-pink focus:ring-1 focus:ring-neon-pink/20"
                     />
                   </div>
                 </div>
                 
                 {/* Genre List */}
                 <div className="max-h-64 overflow-y-auto custom-scrollbar">
-                  <div className="py-2">
+                  <div className="py-1">
                     {filteredGenres.length > 0 ? (
                       filteredGenres.map((genre) => (
                         <button
                           key={genre.id}
                           onClick={() => handleGenreChange(genre.id)}
-                          className={`w-full text-left px-6 py-3 transition-all duration-200 flex items-center justify-between group ${
+                          className={`w-full text-left px-5 py-2.5 transition-all duration-200 flex items-center justify-between text-sm ${
                             genre.id === selectedGenre
-                              ? 'bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 border-r-4 border-amber-600'
-                              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50'
+                              ? 'bg-neon-pink/10 dark:bg-neon-pink/10 text-neon-pink border-r-3 border-neon-pink'
+                              : 'text-dark-600 dark:text-dark-300 hover:bg-dark-100/50 dark:hover:bg-dark-700/50'
                           }`}
                         >
                           <span className="font-medium">{genre.name}</span>
                           {genre.id === selectedGenre && (
-                            <div className="w-2 h-2 rounded-full bg-amber-600" />
+                            <div className="w-2 h-2 rounded-full bg-neon-pink" />
                           )}
                         </button>
                       ))
                     ) : (
-                      <div className="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
+                      <div className="px-6 py-8 text-center text-dark-400 dark:text-dark-500">
                         <MagnifyingGlassIcon className="w-8 h-8 mx-auto mb-2 opacity-50" />
                         <p className="text-sm">No genres found matching &quot;{searchTerm}&quot;</p>
                       </div>
@@ -201,64 +200,6 @@ export default function GenreSelector() {
             )}
           </div>
         </div>
-
-        {/* Quick Genre Pills */}
-        {/* <div className="mt-8">
-          <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4 text-center">
-            Popular {contentType === 'movie' ? 'Movie' : 'TV Show'} Genres
-          </h3>
-          <div className="flex flex-wrap gap-3 justify-center">
-            {currentGenres.slice(0, 8).map((genre) => (
-              <button
-                key={genre.id}
-                onClick={() => handleGenreChange(genre.id)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
-                  genre.id === selectedGenre
-                    ? 'bg-amber-600 text-white shadow-lg'
-                    : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-600 hover:border-amber-400 dark:hover:border-amber-500'
-                }`}
-              >
-                {genre.name}
-              </button>
-            ))}
-          </div>
-        </div> */}
-
-        {/* Current Selection Indicator */}
-        {/* <div className="mt-8 text-center">
-          <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm dark:bg-gray-800/80 px-8 py-4 rounded-full border border-gray-200 dark:border-gray-700 shadow-lg">
-            {contentType === 'movie' ? (
-              <FilmIcon className="w-5 h-5 text-amber-600" />
-            ) : (
-              <TvIcon className="w-5 h-5 text-amber-600" />
-            )}
-            <span className="text-gray-700 dark:text-gray-300 font-medium">
-              Browsing <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-amber-500">{currentGenreName}</span> {contentType === 'movie' ? 'Movies' : 'TV Shows'}
-            </span>
-          </div>
-        </div> */}
-
-        {/* Statistics */}
-        {/* <div className="mt-6 flex justify-center">
-          <div className="grid grid-cols-2 gap-8">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-amber-600 dark:text-amber-400">
-                {currentGenres.length}
-              </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">
-                Available Genres
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-amber-600 dark:text-amber-400">
-                2024
-              </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">
-                Latest Content
-              </div>
-            </div>
-          </div>
-        </div> */}
       </div>
     </div>
   )
